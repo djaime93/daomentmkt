@@ -1,7 +1,4 @@
 <script>
-	import { identity } from 'svelte/internal';
-
-
   /** @type {import('./$types').PageData} */
   export let data;
   $: ({ user, userData } = data);
@@ -12,7 +9,7 @@
 
 <div>Protected content for {user.email}</div>
 <pre>{JSON.stringify(userData, null, 2)}</pre>
-<pre>User id: {JSON.stringify(user.identities[0].id, null, 2)}</pre>
+<pre>User id: {JSON.stringify(user.id, null, 2)}</pre>
 <!-- <script>
   import { supabaseClient } from '$lib/db';
   import { page } from '$app/stores';

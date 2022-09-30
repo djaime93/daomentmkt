@@ -4,6 +4,7 @@
   import { startSupabaseSessionSync } from '@supabase/auth-helpers-sveltekit';
   import { page } from '$app/stores';
   import { invalidateAll } from '$app/navigation';
+	import Nav from '../components/Nav.svelte';
 
   // this sets up automatic token refreshing
   startSupabaseSessionSync({
@@ -12,6 +13,7 @@
     });
 </script>
 
+<Nav/>
 <slot/>
 
 <style>
