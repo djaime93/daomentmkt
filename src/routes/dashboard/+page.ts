@@ -12,12 +12,12 @@ export const load: PageLoad = withAuth(async ({ getSupabaseClient, session }) =>
   if (!session.user) {
     throw redirect(303, '/');
   }
-  const { data: userData } = await getSupabaseClient()
-    .from<TestTable>('users')
+  const { data: tableData } = await getSupabaseClient()
+    .from<TestTable>('test')
     .select('*');
 
   return {
     user: session.user,
-    userData
+    tableData
   };
 });

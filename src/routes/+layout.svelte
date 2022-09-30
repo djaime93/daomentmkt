@@ -3,7 +3,7 @@
   import '$lib/db';
   import { startSupabaseSessionSync } from '@supabase/auth-helpers-sveltekit';
   import { page } from '$app/stores';
-    import { invalidateAll } from '$app/navigation';
+  import { invalidateAll } from '$app/navigation';
 
   // this sets up automatic token refreshing
   startSupabaseSessionSync({
