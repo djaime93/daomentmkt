@@ -1,15 +1,50 @@
 <script>
+	import { enhance } from '$app/forms';
+
+
   /** @type {import('./$types').PageData} */
   export let data;
   $: ({ user, userData } = data);
+  
+  $: {
+    if (userData.length === 1 && first === "" && once===0) {
+      first = userData[0].first
+      last = userData[0].last
+      once = 1
+    }
+  }
+  
+  let first = ""
+  let last = ""
+  let once = 0
+  
 </script>
 
 <h1>You're in</h1>
 
-
 <div>Protected content for {user.email}</div>
-<pre>{JSON.stringify(userData, null, 2)}</pre>
+<pre>{JSON.stringify(userData[0], null, 2)}</pre>
 <pre>User id: {JSON.stringify(user.id, null, 2)}</pre>
+
+
+<form action="?/upsertPofile" use:enhance>
+  <input bind:value={first} type="text" name="first">
+  <input bind:value={last} type="text" name="last">
+  <button type="submit">update</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <script>
   import { supabaseClient } from '$lib/db';
   import { page } from '$app/stores';
