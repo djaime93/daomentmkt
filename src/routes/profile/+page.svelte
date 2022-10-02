@@ -28,8 +28,8 @@
 
 
 <form action="?/upsertPofile" use:enhance>
-  <input bind:value={first} type="text" name="first">
-  <input bind:value={last} type="text" name="last">
+  <input bind:value={first} type="text" name="first" placeholder="first">
+  <input bind:value={last} type="text" name="last" placeholder="last">
   <button type="submit">update</button>
 </form>
 

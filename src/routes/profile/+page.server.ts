@@ -79,8 +79,8 @@ export const actions: Actions = {
     const { error: createPostError, data: newPost } = await getSupabaseClient()
       // .from('profile')
       // .insert({ content });
-      .from<TestTable>('profile')
-      .upsert({ id: session.user.id, first: formData.get("first"), last: formData.get("last") })
+      .from<TestTable>('user')
+      .update({ id: session.user.id, first: formData.get("first"), last: formData.get("last") })
 
     if (createPostError) {
       return invalid(500, {

@@ -13,7 +13,7 @@ export const load: PageLoad = withAuth(async ({ getSupabaseClient, session }) =>
     throw redirect(303, '/');
   }
   const { data: userData } = await getSupabaseClient()
-    .from<TestTable>('profile')
+    .from<TestTable>('user')
     .select('*');
 
   return {

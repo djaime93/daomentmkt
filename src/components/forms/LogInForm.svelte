@@ -4,8 +4,8 @@
 	import { supabaseClient } from "$lib/db";
 
 
-  let email = "djaime93@gmail.com";
-  let password = "jaime123";
+  let email = "";
+  let password = "";
   
   
   export let title
