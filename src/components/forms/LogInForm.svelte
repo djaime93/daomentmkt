@@ -17,7 +17,7 @@
 			});
 			if (user) {
 				console.log('trying to go to dashboard');
-				console.log(goto('/dashboard'));
+				goto('/dashboard');
 				console.log(user);
 			} else {
 				console.error(error);
@@ -39,7 +39,7 @@
 
 <div>
 	<h1>{title}</h1>
-	<form on:submit|preventDefault={handleLogin} on:click={() => goto('dashboard')}>
+	<form on:submit|preventDefault={handleLogin} >
   <!-- <form method="POST" use:enhance action="?/signin"> -->
   <!-- <form method="POST" action='?/signin' use:enhance={({form, data, cancel}) => {
     return ({ result }) => {
@@ -50,7 +50,7 @@
   }}> -->
 		<input type="email" bind:value={email} placeholder="email@email.com" />
 		<input type="password" bind:value={password} placeholder="Password" />
-		<button type="submit">{title}</button>
+		<button type="submit" on:click={() => goto('dashboard')}>{title}</button>
 	</form>
 	{#if title === 'Login'}
 		<a href="/signup">Not a Member? Sign up!</a>

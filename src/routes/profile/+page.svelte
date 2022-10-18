@@ -23,11 +23,11 @@
 	};
 </script>
 
-<!-- <h1>You're in</h1>
+<h1>You're in</h1>
 
 <div>Protected content for {user.email}</div>
 <pre>{JSON.stringify(userData[0], null, 2)}</pre>
-<pre>User id: {JSON.stringify(user.id, null, 2)}</pre> -->
+<pre>User id: {JSON.stringify(user.id, null, 2)}</pre>
 
 <div>
 	<div>Profile Info</div>
@@ -37,6 +37,9 @@
 		<input bind:value={last} type="text" name="last" placeholder="last" />
 		<button type="submit" class={style.updateButton}>update</button>
 	</form>
+
+  <div>Email</div>
+  {user.email}
 
 	<div>Eth Wallet Address</div>
   <button type="submit" class={style.updateButton}>update</button>
