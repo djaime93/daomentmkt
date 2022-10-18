@@ -10,7 +10,7 @@
 	export let title;
 	// export let action
 
-	async function timeout(seconds) {
+	async function sleep(seconds) {
 		return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 	}
 
@@ -21,8 +21,7 @@
 				password: password
 			});
 			if (user) {
-				console.log('trying to go to dashboard');
-				await timeout(3);
+				await sleep(2);
 				goto('/dashboard');
 				console.log(user);
 			} else {
@@ -34,7 +33,7 @@
 				password: password
 			});
 			if (user) {
-				await timeout(3);
+				await sleep(2);
 				goto('/dashboard');
 				console.log(user);
 			} else {
