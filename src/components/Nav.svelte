@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores';
   import SignoutButton from '../components/SignoutButton.svelte';
+  import WalletButton from './WalletButton.svelte';
 
   const style = {
     wrapper: `p-6 flex flex-cols justify-between`,
@@ -23,11 +24,13 @@
 
   <div class={style.user}>
     {#if !$page.data.session.user}
-      <h1>I am not logged in</h1>
+      <a href="/login">Login</a>
     {:else}
       <!-- <p>I am logged in!</p> -->
       <a href="/profile">{$page.data.session.user.email?.split("@")[0]}</a>
       <SignoutButton/>
+
+      <WalletButton/>
     {/if}
   </div>
 </div>

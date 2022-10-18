@@ -2,10 +2,10 @@
 export const actions = {
   default: async (event) => {
     // TODO log the user in
-    const { user, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password
-      });
+    // const { user, error } = await supabaseClient.auth.signUp({
+    //     email: email,
+    //     password: password
+    //   });
       if (user) {
         goto("/dashboard")
       } else {

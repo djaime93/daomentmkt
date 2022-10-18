@@ -9,9 +9,11 @@ interface TestTable {
 }
 
 export const load: PageLoad = withAuth(async ({ getSupabaseClient, session }) => {
-  if (!session.user) {
-    throw redirect(303, '/');
-  }
+  console.log('dashboard atempt')
+  console.log(session.user)
+  // if (!session.user) {
+  //   throw redirect(303, '/');
+  // }
   const { data: tableData } = await getSupabaseClient()
     .from<TestTable>('test')
     .select('*');

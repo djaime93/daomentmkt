@@ -1,14 +1,17 @@
 <script>
-  import { page } from '$app/stores';
+	// import { page } from '$app/stores';
+	import PropertyCard from '../components/PropertyCard.svelte';
 
-  import LogInForm from '../components/forms/LogInForm.svelte';
+	export let data;
+	const { projects } = data;
+
+	const style = {
+		cards: `grid sm:grid-cols-2 lg:grid-cols-3`
+	};
 </script>
 
-
-{#if !$page.data.session.user}
-  <LogInForm title="Login"/>
-  <h1>I am not logged in</h1>
-{:else}
-  <h1>Welcome {$page.data.session.user.email}</h1>
-  <p>I am logged in!</p>
-{/if}
+<div class={style.cards}>
+	{#each projects as project}
+		<PropertyCard {project} />
+	{/each}
+</div>
