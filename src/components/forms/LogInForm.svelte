@@ -2,12 +2,17 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/db';
+	import { page } from '$app/stores';
 
-	let email = '';
-	let password = '';
+	let email = 'djaime93@gmail.com';
+	let password = 'jaime123';
 
 	export let title;
 	// export let action
+
+	async function timeout(seconds) {
+		return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+	}
 
 	async function handleLogin() {
 		if (title === 'Login') {
@@ -17,6 +22,7 @@
 			});
 			if (user) {
 				console.log('trying to go to dashboard');
+				await timeout(3);
 				goto('/dashboard');
 				console.log(user);
 			} else {
@@ -28,6 +34,7 @@
 				password: password
 			});
 			if (user) {
+				await timeout(3);
 				goto('/dashboard');
 				console.log(user);
 			} else {
@@ -35,13 +42,21 @@
 			}
 		}
 	}
+
+	async function goToDashboard() {
+		console.log($page.data.session.user);
+		timeout(3000);
+		if ($page.data.session.user) {
+			goto('/dashboard');
+		}
+	}
 </script>
 
 <div>
 	<h1>{title}</h1>
-	<form on:submit|preventDefault={handleLogin} >
-  <!-- <form method="POST" use:enhance action="?/signin"> -->
-  <!-- <form method="POST" action='?/signin' use:enhance={({form, data, cancel}) => {
+	<form on:submit|preventDefault={handleLogin}>
+		<!-- <form method="POST" use:enhance action="?/signin"> -->
+		<!-- <form method="POST" action='?/signin' use:enhance={({form, data, cancel}) => {
     return ({ result }) => {
       console.log()
       console.log(data)
@@ -50,7 +65,8 @@
   }}> -->
 		<input type="email" bind:value={email} placeholder="email@email.com" />
 		<input type="password" bind:value={password} placeholder="Password" />
-		<button type="submit" on:click={() => goto('dashboard')}>{title}</button>
+		<button type="submit">{title}</button>
+		<!-- <button type="submit" on:click={goToDashboard}>{title}</button> -->
 	</form>
 	{#if title === 'Login'}
 		<a href="/signup">Not a Member? Sign up!</a>
