@@ -25,11 +25,11 @@
 </script>
 
 {#if !$connected}
-	<div class={style.connectButton} on:click={connectWallet}>Connect Wallet</div>
+	<button class={style.connectButton} on:click={connectWallet}>Connect Wallet</button>
 {:else}
-	<div class={style.connectedButton} on:click={disconnectWallet}>
+	<button class={style.connectedButton} on:click={disconnectWallet}>
 		{$signerAddress.slice(0, 5)}...{$signerAddress.slice(-3)}
-	</div>
+	</button>
 	<!-- {$chainData.name}
 	{$chainData.nativeCurrency.name} -->
 	<!-- {JSON.stringify($chainData.nativeCurrency.name)} -->
