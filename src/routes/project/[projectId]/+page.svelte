@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import {
 		connected,
 		provider,
@@ -144,10 +145,12 @@
 </div>
 
 <div class="w-full justify-center flex p-6">
+	{#if $page.data.session.user}
 	{#if $connected}
 		<button class={style.button} on:click={mintToken}>Purchase Token</button>
 	{:else}
 		<button class={style.disabledButton} on:click={connectWallet}>Connect Wallet</button>
+	{/if}
 	{/if}
 </div>
 
