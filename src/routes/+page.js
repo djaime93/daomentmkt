@@ -109,7 +109,7 @@ export const load = ({ fetch, params }) => {
 	const fetchProject = async () => {
 		// const res = await fetch(`https://dummyjson.com/products/${id}`);
 		// const data = await res.json();
-		console.log(data);
+		// console.log(data);
 		return data;
 	};
 

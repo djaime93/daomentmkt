@@ -35,6 +35,8 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/auth-helpers-sveltekit": "^0.7.1",
-		"@supabase/supabase-js": "^1.35.7"
+		"@supabase/supabase-js": "^1.35.7",
+		"ethers": "^5.7.1",
+		"svelte-ethers-store": "^2.5.8"
 	}
 }

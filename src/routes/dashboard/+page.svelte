@@ -1,7 +1,23 @@
 <script>
+	import {
+		connected,
+		provider,
+		chainId,
+		chainData,
+		signer,
+		signerAddress,
+		contracts
+	} from 'svelte-ethers-store';
+	import { defaultEvmStores } from 'svelte-ethers-store';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
+
 	$: ({ user, tableData } = data);
+
+	const connectWallet = () => {
+		defaultEvmStores.setProvider();
+	};
 
 	const collectRent = async (property) => {
 		alert('Metamask popup -> collecting rent of token id: ' + property);
@@ -43,7 +59,7 @@
 		}
 	];
 
-	let test = dollarUSLocale.format(3000)
+	let test = dollarUSLocale.format(3000);
 
 	let sumProperties = {
 		tokens: reProperties.map((item) => item.tokens).reduce((prev, curr) => prev + curr, 0),
@@ -51,7 +67,7 @@
 		rentCollected: reProperties
 			.map((item) => item.rentCollected)
 			.reduce((prev, curr) => prev + curr, 0),
-		rentPending: reProperties.map((item) => item.rentPending).reduce((prev, curr) => prev + curr, 0),
+		rentPending: reProperties.map((item) => item.rentPending).reduce((prev, curr) => prev + curr, 0)
 	};
 	// 	const res = Array.from(arr.reduce(
 	//   (m, {name, value}) => m.set(name, (m.get(name) || 0) + value), new Map
@@ -69,7 +85,7 @@
 		headerContainer: ``,
 		table: ``,
 
-		collectRentButton: `p-2 bg-black text-white`
+		collectRentButton: `p-2 text-white`
 	};
 </script>
 
@@ -98,7 +114,18 @@
 					<td>${dollarUSLocale.format(sumProperties.rentCollected)}</td>
 					<td>${dollarUSLocale.format(sumProperties.rentPending)}</td>
 					<td>
-						<div on:click={collectAllRent} class={style.collectRentButton}>Collect Rent</div>
+						{#if $connected}
+							<button
+								on:click={collectAllRent}
+								class={`${style.collectRentButton} bg-black`}
+							>
+								Collect Rent
+							</button>
+						{:else}
+							<button on:click={connectWallet} class={`${style.collectRentButton} bg-gray-400`}>
+								Collect Rent
+							</button>
+						{/if}
 					</td>
 				</tr>
 
@@ -112,9 +139,18 @@
 						<td>${dollarUSLocale.format(property.rentCollected)}</td>
 						<td>${dollarUSLocale.format(property.rentPending)}</td>
 						<td>
-							<div on:click={() => collectRent(property.tokenId)} class={style.collectRentButton}>
-								Collect Rent
-							</div>
+							{#if $connected}
+								<button
+									on:click={() => collectRent(property.tokenId)}
+									class={`${style.collectRentButton} bg-black`}
+								>
+									Collect Rent
+								</button>
+							{:else}
+								<button on:click={connectWallet} class={`${style.collectRentButton} bg-gray-400`}>
+									Collect Rent
+								</button>
+							{/if}
 						</td>
 					</tr>
 				{/each}
@@ -129,9 +165,18 @@
 						<td>${dollarUSLocale.format(property.rentCollected)}</td>
 						<td>${dollarUSLocale.format(property.rentPending)}</td>
 						<td>
-							<div on:click={() => collectRent(property.tokenId)} class={style.collectRentButton}>
-								Collect Rent
-							</div>
+							{#if $connected}
+								<button
+									on:click={() => collectRent(property.tokenId)}
+									class={`${style.collectRentButton} bg-black`}
+								>
+									Collect Rent
+								</button>
+							{:else}
+								<button on:click={connectWallet} class={`${style.collectRentButton} bg-gray-400`}>
+									Collect Rent
+								</button>
+							{/if}
 						</td>
 					</tr>
 				{/each}

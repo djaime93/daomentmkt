@@ -3,6 +3,18 @@
 	import SignoutButton from '../components/SignoutButton.svelte';
 	import WalletButton from './WalletButton.svelte';
 
+	import {
+		connected,
+		provider,
+		chainId,
+		chainData,
+		signer,
+		signerAddress,
+		contracts
+	} from 'svelte-ethers-store';
+	import { defaultEvmStores } from 'svelte-ethers-store';
+
+
 	const style = {
 		wrapper: `p-6 flex flex-cols justify-between`,
 		left: ``,

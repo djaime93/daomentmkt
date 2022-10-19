@@ -1,10 +1,25 @@
 <script>
+	import {
+		connected,
+		provider,
+		chainId,
+		chainData,
+		signer,
+		signerAddress,
+		contracts
+	} from 'svelte-ethers-store';
+	import { defaultEvmStores } from 'svelte-ethers-store';
+	
 	export let data;
 
 	const { project } = data;
 
 	const mintToken = () => {
 		alert('mint');
+	};
+
+	const connectWallet = () => {
+		defaultEvmStores.setProvider();
 	};
 
 	const style = {
@@ -129,10 +144,10 @@
 </div>
 
 <div class="w-full justify-center flex p-6">
-	{#if true}
+	{#if $connected}
 		<button class={style.button} on:click={mintToken}>Purchase Token</button>
 	{:else}
-		<button class={style.disabledButton}>Connect Wallet</button>
+		<button class={style.disabledButton} on:click={connectWallet}>Connect Wallet</button>
 	{/if}
 </div>
 
